@@ -17,5 +17,8 @@
     "format": "npx prettier --write . --ignore-path .gitignore",
     "lint": "eslint . --ignore-path .gitignore",
     "fix-style": "npm run format && npm rin lint"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
