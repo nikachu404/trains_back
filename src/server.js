@@ -3,7 +3,7 @@ import 'dotenv/config';
 import cors from 'cors';
 import { trainsRouter } from './routes/trainsRouter.js';
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 const app = express();
 
