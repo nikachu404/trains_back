@@ -1,4 +1,4 @@
-import { connection } from '../../utils/db.js';
+import { pool } from '../../utils/db.js';
 
 export const getAvailableTrains = (req, res) => {
   const { departure, arrival } = req.query;
@@ -12,7 +12,7 @@ export const getAvailableTrains = (req, res) => {
     params.push(departure, arrival);
   }
 
-  connection.execute(query, params, (error, results) => {
+  pool.execute(query, params, (error, results) => {
     if (error) {
       res.status(500).json({ error: 'Помилка сервера' });
     } else {
