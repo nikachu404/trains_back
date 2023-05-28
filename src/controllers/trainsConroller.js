@@ -9,15 +9,17 @@ export const getAvailableTrains = (req, res) => {
 
   if (departure) {
     query += ' WHERE departure_station = ?';
-    params.push(departure, arrival, date);
+    params.push(departure);
   }
 
   if (arrival) {
     query += ' AND arrival_station = ?';
+    params.push(arrival);
   }
 
   if (date) {
     query += ' AND DATE(departure_time) = ?';
+    params.push(date);
   }
 
   pool.execute(query, params, (error, results) => {
