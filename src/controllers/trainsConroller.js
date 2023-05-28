@@ -1,10 +1,10 @@
 import { pool } from '../../utils/db.js';
+import { addDays, formatDate } from '../helpers/index.js';
 
 export const getAvailableTrains = (req, res) => {
   const { departure, arrival, date } = req.query;
 
   let query = 'SELECT * FROM trains';
-
   const params = [];
 
   if (departure) {
@@ -17,7 +17,17 @@ export const getAvailableTrains = (req, res) => {
     params.push(arrival);
   }
 
-  if (date) {
+  if (date === 'next7days') {
+    const currentDate = new Date();
+    const nextSevenDays = Array.from({ length: 7 }, (_, index) =>
+      addDays(currentDate, index)
+    );
+    const formattedDates = nextSevenDays.map((day) => formatDate(day));
+    query += ` AND DATE(departure_time) IN (${formattedDates
+      .map(() => '?')
+      .join(',')})`;
+    params.push(...formattedDates);
+  } else if (date) {
     query += ' AND DATE(departure_time) = ?';
     params.push(date);
   }
