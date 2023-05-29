@@ -55,29 +55,30 @@ In case of any server error, the API will respond with a 500 status code and an 
   "error": "Server error"
 }
 ```
-Examples
-Example 1: Retrieve all trains
+<h2>Examples</h2>
+
+**Example 1: Retrieve all trains**
 
 ```bash 
 GET /trains
 ```
 This request will retrieve all available trains without applying any filters.
 
-Example 2: Filter trains by departure and arrival stations
+**Example 2: Filter trains by departure and arrival stations**
 
 ```bash 
 GET /trains?departure=StationA&arrival=StationB
 ```
 This request will retrieve trains that depart from "Station A" and arrive at "Station B".
 
-Example 3: Filter trains by departure date for the next 7 days
+**Example 3: Filter trains by departure date for the next 7 days**
 
 ```bash
 GET /trains?date=next7days
 ```
 This request will retrieve trains departing in the next 7 days starting from the current date.
 
-Example 4: Filter trains by specific date
+**Example 4: Filter trains by specific date**
 
 ```bash
 GET /trains?date=2023-06-01
